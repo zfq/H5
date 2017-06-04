@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-body , h1, h2, p, ul, figure{
+body , h1, h2, p, ul, figure, article{
     margin: 0;
     padding: 0;
 }
