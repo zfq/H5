@@ -1,0 +1,247 @@
+@charset "utf-8";
+
+#headline {
+    width: 100%;
+    min-width: 1263px;
+    height: 300px;
+    background: linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0)),url(../images/headline.jpg) no-repeat center;
+}
+
+#headline .center{
+    width: 1263px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+#headline .info {
+    padding: 100px 0 0 50px;
+}
+
+#headline h2 {
+    color: white;
+}
+
+#headline p {
+    color:white;
+}
+
+#container {
+    width: 1263px;
+    height: 1200px;
+    margin: 30px auto;
+}
+
+#container .aside-bar {
+    width: 320px;
+    height: 1200px;
+    float: right;
+    box-sizing: content-box;
+}
+
+#container .sidebox {
+    border: 1px solid #eee;
+    margin: 0 0 10px 0;
+    text-align: center;
+    box-sizing: content-box;
+    display: inline-block;
+}
+
+#container .sidebox h2 {
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    text-indent: 8px;
+    height: 40px;
+    line-height: 40px;
+    background-color: #fafafa;
+    color:#666;
+    text-align: left;
+}
+
+#container .tag {
+    background-color: #eee;
+    width: 100%;
+    box-sizing: content-box;
+    text-align: left;
+    font-size: 0px;
+}
+
+#container .tag li {
+    background-color: white;
+    display: inline-block;
+    width: 140px;
+    height: 35px;
+    font-size: 14px;
+    line-height: 35px;
+    margin: 4px;
+    color:#999;
+    text-align: center;
+}
+
+#container .tag li a {
+    display: block;
+    color:#666;
+}
+#container .tag a:hover {
+    background-color: #458b00;
+    color:white;
+}
+
+#container .hot, #container .treasure {
+    clear: both;
+}
+
+#container .list {
+    width: 920px;
+    height: 1200px;
+    float: left;
+}
+
+#container .figure figure{
+    display: inline-block;
+}
+
+#container .thumbnail {
+    background-image: url(../images/small.png);
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position:10px center; 
+}
+
+#container .list .info {
+    background-color: #eee;
+    height: 45px;
+}
+
+#container .left,  #container .left li, #container .right li{
+    float: left;
+}
+
+#container .left li,  #container .right li{
+    width: 100px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background-color: #eee;
+}
+
+#container .left li:first-child {
+    background-color: #fff;
+    border-top: 2px solid #45b800;
+    height: 43px;
+    line-height: 43px;
+    position: relative;
+    left: 1px; 
+}
+
+#container .left a {
+    color:#666;
+}
+#container .right {
+    float: right;
+}
+
+#container .right li {
+    width: 60px;
+    height: 45px;
+    line-height: 45px;
+    margin-right: 5px;
+}
+
+#container .right a {
+    color: #666;
+    padding: 0 5px;
+}
+
+#container .right .selected , #container .right a:hover{
+    background-color: green;
+    color:white;
+}
+
+.tour_bd {
+    margin-top: 5px;
+    width: 920px;
+    height: 220px;
+    clear: both;
+    padding: 0px;
+    position: relative;
+    border: 1px solid red;
+    box-sizing: content-box;
+}
+
+.tour_bd img {
+    width: 250px;
+    height: 220px;
+    float: left;
+}
+
+.tour_bd figcaption {
+    width: 669px;
+    height: 100%;
+    box-sizing: content-box;
+    float: left;
+}
+
+.tour_bd footer {
+    width: 670px;
+    height: 30px;
+    line-height: 30px;
+    text-indent: 25px;
+    position: absolute;
+    bottom: 0;
+}
+
+.tour_bd time {
+    color: #458b00;
+}
+
+.tour_bd header {
+    width: 300px;
+}
+
+.tour_bd h2 {
+    font-size: 24px;
+    color:#333;
+    font-weight: normal;
+    padding: 10px 0 10px 25px;
+}
+
+.tour_bd p {
+    font-size: 16px;
+    color:#666;
+    line-height: 1.5;
+    padding: 10px 0 10px 25px;
+}
+
+.tour_bd ul {
+    padding-left: 25px;
+    color:#666;
+    line-height: 2;
+}
+
+.tour_bd mark  {
+    background-color: #fff;
+    border: 1px solid #458b00;
+    border-radius: 4px;
+    padding: 0 5px;
+    color:#458b00;
+}
+
+.tour_bd .buy {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+}
+
+.tour_bd .buy .price {
+    color:#f60;
+    font-size: 20px;
+}
+.tour_bd .buy .price strong{
+    font-size: 36px;
+}
+
+.tour_bd .buy .price s {
+    font-size: 16px;
+    color:#999;
+}
