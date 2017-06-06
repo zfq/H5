@@ -76,7 +76,7 @@
 }
 
 #tour figure {
-    border:1px solid red;
+    border:1px solid #eee;
     display: inline-block;
     padding: 4px;
     border-radius: 4px;
