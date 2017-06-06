@@ -102,8 +102,6 @@ div {
     right: 6%;
     top: 0.03rem;
     display: block;
-    // margin-top: -150px;
-    // margin-left: 180px;
     width: 0.5rem;
     height: 0.3rem;
     cursor: pointer;
@@ -113,6 +111,50 @@ div {
     color:#666;
     background-color: #eee;
     font-size: 0.16rem;
+}
+
+#tour {
+    max-width: 6.4rem;
+    margin: 0.1rem auto 0 auto;
+}
+
+#tour h2 {
+    text-align: center;
+    color: #666;
+    font-size: 0.26rem;
+}
+
+#tour p {
+    text-align: center;
+    color: #666;
+    font-size: 0.16rem;
+    margin: 0.05rem 0 0.1rem 0;
+}
+
+/* 媒体查询 宽度在320和640之间时用下面0.26和0.16的字体大小，在小于320时用0.10和0.09的字体大小 */
+@media (min-width: 320px) and (max-width: 640px) {
+    #tour h2 {
+        text-align: center;
+        color: #666;
+        font-size: 0.26rem;
+    }
+
+    #tour p {
+        text-align: center;
+        color: #666;
+        font-size: 0.16rem;
+        margin: 0.05rem 0 0.1rem 0;
+    }
+}
+
+@media (max-width: 320px) {
+    #tour h2 {
+        font-size: 0.10rem;
+    }
+
+    #tour p {
+        font-size: 0.09rem;
+    }
 }
 
 #footer {
