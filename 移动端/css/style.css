@@ -4,7 +4,7 @@ html {
     font-size: 625%; //10px
 }
 
-body , h1, h2, p, ul, figure, input, article{
+body , h1, h2, h4, p, ul, figure, input, article{
     margin: 0;
     padding: 0;
     font-size: 0.16rem;
@@ -15,10 +15,11 @@ body , h1, h2, p, ul, figure, input, article{
     height: 0. 45rem;
     background-color: #333;
     box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    z-index: 9999;
-    position: relative;
     font-size: 0.16rem;
     min-width: 3.2rem;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
 }
 
 a {
@@ -50,7 +51,6 @@ li {
     background-color: #000;
 }
 
-
 .none {
     display: none;
 }
@@ -67,13 +67,14 @@ img {
     margin:0 auto;
 }
 
-div {
+div , figure, figcaption{
     box-sizing: border-box;
 }
 
 #adver {
     max-width: 6.4rem;
     margin: 0 auto;
+    padding-top: 0.45rem;
 }
 
 #search {
@@ -131,24 +132,29 @@ div {
     margin: 0.05rem 0 0.1rem 0;
 }
 
+#tour h4 {
+    color:#333;
+    font-weight: normal;
+    font-size: 0.14rem;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
+
 /* 媒体查询 宽度在320和640之间时用下面0.26和0.16的字体大小，在小于320时用0.10和0.09的字体大小 */
 @media (min-width: 320px) and (max-width: 640px) {
     #tour h2 {
-        text-align: center;
-        color: #666;
         font-size: 0.26rem;
     }
 
-    #tour p {
-        text-align: center;
-        color: #666;
+    #tour p , #tour h4{
         font-size: 0.16rem;
-        margin: 0.05rem 0 0.1rem 0;
     }
 }
 
 @media (max-width: 320px) {
-    #tour h2 {
+    #tour h2 , #tour h4{
         font-size: 0.10rem;
     }
 
@@ -157,16 +163,215 @@ div {
     }
 }
 
+#tour figure {
+    width: 50%;
+    float: left;
+    position: relative;
+}
+
+#tour figure img {
+    padding: 0.02rem;
+    border-radius: 0.04rem;
+}
+
+#tour figcaption {
+    font-size: 0.13rem;
+} 
+
+#tour figcaption p {
+    margin: 0;
+    padding: 0 0.05rem;
+    overflow: hidden;
+}
+
+#tour .sat {
+    float: right;
+    margin-right: 0.02rem;
+}
+
+#tour .price {
+    color:#f60;
+    margin-left: 0.02rem;   
+}
+
+#tour .type {
+    position: absolute;
+    background-color: #59b200;
+    left: 10px;
+    top: 10px;
+    width: 90px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    color:white;
+}
+
+.clearfix:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/* travelInformation 页面*/
+#headerline {
+    max-width: 6.4rem;
+    height: 2rem;
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.7), rgba(255,255,255,0)),url(../img/tour-3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    margin: 0.45rem auto 0 auto;
+}
+
+#headerline section {
+    padding-top: 0.45rem;
+    padding-left: 5px;
+}
+
+.placeholder {
+    height: 0.45rem;
+    clear: both;
+}
+
+.list {
+    font-size: 0.16rem;
+    color:#666;
+    max-width: 6.4rem;
+    margin: 0.15rem auto;
+}
+
+.list h2 {
+    font-size: 0.18rem;
+    border-bottom: 0.01rem;
+    border-bottom: 0.01rem dashed #999;
+    padding-bottom: 0.05rem;
+}
+
+.information figure{
+
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin: 0.15rem 0 0 0;
+    position: relative;
+}
+
+.information figure:after {
+    content: '.';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+.information figure img {
+    width: 48%;
+    float: left;
+}
+
+.information figure figcaption {
+    width: 50%;
+    float: right;
+}
+
+.information .title {
+    border: none;
+    padding-bottom: 0.05rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+}
+
+.information .desc {
+    font-weight: normal;
+    padding: 0;
+}
+
+.information .price {
+    position: absolute;
+    bottom: 0;
+}
+
+.information .price strong {
+    font-size: 0.26rem;
+    color:#f60;
+}
+
+.information figcaption p {
+    overflow: hidden;
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    margin-right: 0.09rem;
+}
+
+/* tickets */
+ .ticket .type {
+    margin: 0.11rem 0 0.05rem 0;
+}
+
+ .ticket .type mark {
+    color:white;
+    background-color: #458b00;
+    padding: 0.05rem 0.08rem;
+    border-radius: 0.04rem;
+    margin: 0 0 0 0.1rem;
+}
+
+ .ticket form {
+
+}
+
+ .ticket form p{
+    line-height: 3;
+}
+
+ .ticket .form label {
+
+ }
+ .ticket .form input {
+    width: 97%;
+    height: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 18px;
+    color: #666;
+    margin: 0 0 0 16px;
+}
+
+ .ticket form .button {
+        
+}
+
+ .ticket form .submit {
+    width: 97%;
+    height: 40px;
+    font-size: 20px;
+    color: #fff;
+    background-color: #f60;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    position: relative;
+    top: -30px;
+}
+
+/* footer */
 #footer {
     height: 0.6rem;
     background-color: #222;
     max-width: 6.4rem;
     min-width: 3.2rem;
-    margin: 0 auto;
+    margin: 0.05rem auto 0 auto;
     text-align: center;
     color:#777;
     padding: 0.1rem 0;
     font-size: 0.16rem;
+    clear: both;
 }
 
 #footer .top {
