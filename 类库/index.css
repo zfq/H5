@@ -1,0 +1,22 @@
+@charset 'utf-8';
+
+#box {
+    color:green;
+    font-size: 30px;
+}
+
+.a {
+    color:#fed80;
+}
+
+.b {
+    background-color: #ccc;
+}
+
+.c {
+    font-size: 40px;
+}
+
+.d {
+    text-decoration: underline;
+}
