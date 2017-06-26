@@ -89,3 +89,31 @@ li a:hover {
     margin-right: 0;
     margin-top: 0;
 }
+
+#login_alert .user, #login_alert .pass {
+    font-size: 14px;
+    color:#666;
+    margin: 5px auto;
+    text-align: center;
+}
+
+#login_alert input {
+    width: 200px;
+    height: 25px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    background-color: #FFF;
+}
+
+#login_alert .submit_btn {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#login_alert button {
+    width: 107px;
+    height: 30px;
+    background-color: green;
+    color:white;
+    border: none;
+}
