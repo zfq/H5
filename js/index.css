@@ -69,6 +69,9 @@ li a:hover {
     width: 320px;
     height: 250px;
     border: 1px solid #999;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 #login_alert h2 {
@@ -93,7 +96,7 @@ li a:hover {
 #login_alert .user, #login_alert .pass {
     font-size: 14px;
     color:#666;
-    margin: 5px auto;
+    margin: 15px auto;
     text-align: center;
 }
 
@@ -103,6 +106,7 @@ li a:hover {
     font-size: 14px;
     border: 1px solid #ccc;
     background-color: #FFF;
+    margin-left: 20px;
 }
 
 #login_alert .submit_btn {
@@ -115,5 +119,14 @@ li a:hover {
     height: 30px;
     background-color: green;
     color:white;
-    border: none;
+    border:none;
+    font-size: 16px;
+}
+
+#login_alert .other {
+    float: right;
+    margin-right: 10px;
+    margin-top: 30px;
+    font-size: 14px;
+    color:#666;
 }
