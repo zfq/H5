@@ -70,8 +70,9 @@ li a:hover {
     height: 250px;
     border: 1px solid #999;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    display: none;
+    z-index: 9999;
+    background-color: white;
 }
 
 #login_alert h2 {
@@ -83,6 +84,7 @@ li a:hover {
     margin: 0;
     padding: 0;
     border-bottom: 1px solid #ccc;
+    cursor: move;
 }
 
 #login_alert h2 img {
@@ -129,4 +131,12 @@ li a:hover {
     margin-top: 30px;
     font-size: 14px;
     color:#666;
+}
+
+#screen {
+    position: absolute;
+    top:0;
+    left:0;
+    background-color: rgba(100, 100, 100, 0.5);
+    z-index: 9998;
 }

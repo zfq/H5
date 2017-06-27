@@ -178,5 +178,118 @@ Base.prototype.hide = function() {
     return this;
 }
 
+//设置元素居中
+Base.prototype.center = function() {
+    var clientWidth = document.documentElement.clientWidth;
+    var clientHeight = document.documentElement.clientHeight;
 
+    for (var i = 0; i < this.elements.length; i++) {
+        var top = (clientHeight - this.elements[i].offsetHeight) / 2;
+        var left = (clientWidth - this.elements[i].offsetWidth) / 2;
 
+        this.elements[i].style['top'] = top + 'px';
+        this.elements[i].style['left'] = left + 'px';
+    }
+}
+
+//窗口大小改变触发
+Base.prototype.resize = function(fn) {
+
+    var that = this;
+    window.onresize = function () {
+        for (var i = 0; i < that.elements.length; i++) {
+            fn();
+
+            //设置当前元素可见
+            var ele = that.elements[i];
+            if (ele.offsetLeft + ele.clientWidth > document.documentElement.clientWidth) {
+                ele.style.left = document.documentElement.clientWidth - ele.clientWidth + 'px';
+            } else if (ele.offsetTop + ele.clientHeight > document.documentElement.clientHeight) {
+                ele.style.top = document.documentElement.clientHeight - ele.clientHeight + 'px';
+            }
+            
+        }
+    }
+
+    return this;
+}
+
+Base.prototype.lock = function() {
+    var clientWidth = document.documentElement.clientWidth;
+    var clientHeight = document.documentElement.clientHeight;
+
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.display = 'block';
+        this.elements[i].style['width'] = clientWidth + 'px';
+        this.elements[i].style['height'] = clientHeight + 'px';
+
+        //隐藏滚动条
+        document.documentElement.style.overflow = 'hidden';
+    }
+    return this;
+}
+
+Base.prototype.unlock = function() {
+    var clientWidth = document.documentElement.clientWidth;
+    var clientHeight = document.documentElement.clientHeight;
+
+    for (var i = 0; i < this.elements.length; i++) {
+        this.elements[i].style.display = 'none';
+        document.documentElement.style.overflow = 'auto';
+    }
+    return this;
+}
+
+Base.prototype.drag = function() {
+    for (var i = 0; i < this.elements.length; i++) {
+
+        this.elements[i].onmousedown = function (event) {
+            //clientX 点击点距离窗口左边的距离
+            var _this = this;
+            var diffX = event.clientX - _this.offsetLeft;
+            var diffY = event.clientY - _this.offsetTop;
+            
+            document.onmousemove = function(moveEvent){
+                var e = moveEvent || window.moveEvent;
+                var left = moveEvent.clientX - diffX;
+                var top = moveEvent.clientY - diffY;
+                //限制不让拖出去
+                if (left < 0) {
+                    left = 0;
+                } else if (left > (document.documentElement.clientWidth - _this.offsetWidth)) {
+                    left = document.documentElement.clientWidth - _this.offsetWidth;
+                }
+                if (top < 0) {
+                    top = 0;
+                } else if (top > document.documentElement.clientHeight - _this.offsetHeight) {
+                    top = document.documentElement.clientHeight - _this.offsetHeight
+                }
+                _this.style.left = left + 'px';
+                _this.style.top = top + 'px';
+            };
+
+            document.onmouseup = function() {
+                this.onmousemove = null;
+                this.onmouseup = null;
+            };
+        };
+
+    }
+    return this;
+}
+
+function getEvent(event) {
+    return event || window.moveEvent;
+}
+
+//阻止默认行为
+function preventDefault(event) {
+    var event = getEvent(event);
+    if (typeof event.preventDefault != 'undefined') {
+        event.preventDefault(); //W3C
+    } else {
+        event.returnValue = false;  //IE
+    }
+}
+
+    
