@@ -5,26 +5,97 @@ var $ = function(_this){
 };
 
 //基础库
-function Base(_this) {
+function Base(args) {
     this.elements = []
     
-    if (_this != undefined) {
-        this.elements[0] = _this;
-    }
-
-    this.getById = function(id) {
-        this.elements.push(document.getElementById(id))
-        return this;
-    };
-
-    this.getByTagName = function(tagName) {
-        var tags = document.getElementsByTagName(tagName);
-        for(var i = 0; i < tags.length; i++) {
-            this.elements.push(tags[i]);
+    if (typeof args == 'string') {
+        var selectors = args.split(/\s+/);
+        for (var k=0; k < selectors.length; k++) {
+            // 
+            if (k == 0) {
+                switch (selectors[k].charAt(0)) {
+                    case '#': {
+                        this.getById(selectors[k].substring(1));
+                    } break;
+                    case '.': {
+                        var eles = document.getElementsByClassName(selectors[k].substring(1));
+                        for (var i = 0; i < eles.length; i++) {
+                            this.elements.push(eles[i]);
+                        }
+                        
+                    } break;    
+                    default: {
+                        this.getByTagName(selectors[k]);
+                    } break;
+                }
+            } else {
+                this.find(selectors[k]);
+            }
+            
         }
-        return this;
+        /*
+        switch (args.charAt(0)) {
+            case '#': {
+                this.getById(args.substring(1));
+            } break;
+            case '.': {
+                var eles = document.getElementsByClassName(args.substring(1));
+                for (var i = 0; i < eles.length; i++) {
+                    this.elements.push(eles[i]);
+                }
+                
+            } break;    
+            default: {
+                this.getByTagName(args);
+            } break;
+        }*/
+        
+    } else if (args != undefined) {
+        this.elements[0] = args;
     }
+}
 
+Base.prototype.getById = function(id) {
+    this.elements.push(document.getElementById(id))
+    return this;
+};
+
+Base.prototype.getByTagName = function(tagName) {
+    var tags = document.getElementsByTagName(tagName);
+    for(var i = 0; i < tags.length; i++) {
+        this.elements.push(tags[i]);
+    }
+    return this;
+}
+
+Base.prototype.find = function(args) {
+        var tmpEles = [];
+        for(var i = 0; i < this.elements.length; i++) {
+            switch (args.charAt(0)) {
+            case '#': {
+                tmpEles.push(document.getElementById(args.substring(1)));
+            } break;
+            case '.': {
+                var eles = this.elements[i].getElementsByClassName(args.substring(1));
+                for (var j = 0; j < eles.length; j++) {
+                    tmpEles.push(eles[j]);
+                }
+                
+            } break;    
+            default: {
+                var tags = this.elements[i].getElementsByTagName(args);
+                for (var j=0; j < tags.length; j++) {
+                    tmpEles.push(tags[j]);
+                }
+                
+            } break;
+        }
+    }
+    
+
+    this.elements = tmpEles;
+
+    return this;
 }
 
 //设置css

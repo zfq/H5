@@ -2,6 +2,7 @@
 
 
 window.onload = function() {
+    /*
     $().getClass('member').hover(function(){
         $().getByTagName('ul').show();
     },function() {
@@ -30,36 +31,18 @@ window.onload = function() {
 
     //设置拖拽
     loginAlert.drag([document.getElementById('login_drag')]);
+    */
+
+
+
+    // $('#box').find('.a').find('span').css('color','green');
+    $('#box .a   span').css('color','green');
 }
 
 
 
 
 
-/*
-
-window.onload = function () {
-    var btn = document.getElementById('myBtn');
-    addEvent(btn, 'click', fn1);
-    // addEvent(document, 'click',fn2);
-
-    // var baidu = document.getElementById('baidu');
-    // addEvent(baidu, 'click', function(e){
-    //     e.preventDefault();
-    // });
-}
-
-function fn1(e){
-    e.stopPropagation();
-    alert('button');
-}
-
-
-function fn3(){
-    alert(3);
-}
-
-*/
 
 
 
