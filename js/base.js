@@ -158,8 +158,8 @@ Base.prototype.removeRule = function(styleSheetsIndex, ruleIndex) {
 
 Base.prototype.hover = function(over,out) {
     for (var i = 0; i < this.elements.length; i++) {
-        this.elements[i].onmouseover = over;
-        this.elements[i].onmouseout = out;
+        addEvent(this.elements[i], 'mouseover', over);
+        addEvent(this.elements[i], 'mouseout', out);
     }
     return this; 
 }
@@ -196,7 +196,7 @@ Base.prototype.center = function() {
 Base.prototype.resize = function(fn) {
 
     var that = this;
-    window.onresize = function () {
+    addEvent(window, 'resize', function(){
         for (var i = 0; i < that.elements.length; i++) {
             fn();
 
@@ -209,7 +209,7 @@ Base.prototype.resize = function(fn) {
             }
             
         }
-    }
+    });
 
     return this;
 }
@@ -243,13 +243,22 @@ Base.prototype.unlock = function() {
 Base.prototype.drag = function() {
     for (var i = 0; i < this.elements.length; i++) {
 
-        this.elements[i].onmousedown = function (event) {
+        addEvent(this.elements[i], 'mousedown', function (event){
             //clientX 点击点距离窗口左边的距离
             var _this = this;
             var diffX = event.clientX - _this.offsetLeft;
             var diffY = event.clientY - _this.offsetTop;
             
-            document.onmousemove = function(moveEvent){
+            if (event.target.tagName == 'H2') {
+                addEvent(document, 'mousemove', move);
+                addEvent(document, 'mouseup', up);
+            } else {
+                removeEvent(document, 'mousemove', move);
+                removeEvent(document, 'mouseup', up);
+            }
+            
+            
+            function move(moveEvent){
                 var e = moveEvent || window.moveEvent;
                 var left = moveEvent.clientX - diffX;
                 var top = moveEvent.clientY - diffY;
@@ -268,13 +277,14 @@ Base.prototype.drag = function() {
                 _this.style.top = top + 'px';
             };
 
-            document.onmouseup = function() {
-                this.onmousemove = null;
-                this.onmouseup = null;
+            function up() {
+                removeEvent(this, 'mousemove', move);
+                removeEvent(this, 'mouseup', up);
             };
-        };
 
-    }
+        })
+
+    }   //end for
     return this;
 }
 
@@ -292,4 +302,87 @@ function preventDefault(event) {
     }
 }
 
-    
+//跨浏览器添加事件
+function addEvent(obj, type, fn) {
+    if (typeof obj.addEventListener != 'undefined') {
+        obj.addEventListener(type, fn, false);
+    } else {
+        //创建一个存放事件的字典
+        if (!obj.events) {
+            obj.events = {};
+        }
+        //每个Key对应的值为事件处理函数的数组
+        if (!obj.events[type]) {
+            //创建数组
+            obj.events[type] = [];
+            obj.events[type][0] = fn;
+        } else {
+            //如果函数不存在，就添加进来
+            if (!addEvent.existFunction(obj.events[type], fn)) {
+                obj.events[type][addEvent.eventId++] = fn;
+            }
+        }
+        
+        //执行事件函数
+        obj['on' + type] = addEvent.exec;
+    }
+}
+
+function removeEvent(obj, type, fn) {
+    if (typeof obj.removeEventListener != 'undefined') {
+        obj.removeEventListener(type, fn, false);
+    } else {
+        //删除元素
+        if (obj.events) {
+            for (var i = obj.events[type].length - 1; i >=0; i--) {
+                if (obj.events[type][i] == fn)
+                    obj.events[type].splice(i,1);
+            }
+        }
+        
+    }
+}
+addEvent.eventId = 1;
+addEvent.exec = function(event) {
+    var e = event || addEvent.fixEvent(window.event);
+    for (var i in this.events[e.type]) {
+        this.events[e.type][i].call(this,e);
+    }
+}
+
+addEvent.existFunction = function(eventFunctions, fn) {
+    for (var i in eventFunctions) {
+        if (eventFunctions[i] == fn) {
+            return true;
+        }
+    }
+    return false;
+}
+
+addEvent.fixEvent = function (event) {
+    event.preventDefault = addEvent.fixEvent.preventDefault;
+    event.stopPropagation = addEvent.fixEvent.stopPropagation;
+    return event;
+}
+
+addEvent.fixEvent.preventDefault = function() {
+    this.returnValue = false;
+}
+
+addEvent.fixEvent.stopPropagation = function() {
+    this.cancelBubble = false;
+}
+
+//跨浏览器删除事件
+function removeEvent(obj, type, fn) {
+    if (typeof obj.removeEventListener != 'undefined') {
+        obj.removeEventListener(type, fn, false);
+    } else if (typeof obj.detachEvent != 'undefined') {
+        obj.detachEvent('on' + type, fn);
+    }
+}
+
+//插件入口
+Base.prototype.extend = function(name, fn) {
+    Base.prototype[name] = fn;
+};

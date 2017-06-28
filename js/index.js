@@ -29,27 +29,44 @@ window.onload = function() {
     });
 
     //设置拖拽
-    loginAlert.drag();
-
-    // login.onmousedown = function (event) {
-    //     //clientX 点击点距离窗口左边的距离
-    //     var _this = this;
-    //     var diffX = event.clientX - _this.offsetLeft;
-    //     var diffY = event.clientY - _this.offsetTop;
-        
-    //     document.onmousemove = function(moveEvent){
-    //         var e = moveEvent || window.moveEvent;
-    //         _this.style.left = moveEvent.clientX - diffX + 'px';
-    //         _this.style.top = moveEvent.clientY - diffY + 'px';
-    //     };
-
-    //     document.onmouseup = function() {
-    //         this.onmousemove = null;
-    //         this.onmouseup = null;
-    //     };
-    // };
-    
-
-    
+    loginAlert.drag([document.getElementById('login_drag')]);
 }
+
+
+
+
+
+/*
+
+window.onload = function () {
+    var btn = document.getElementById('myBtn');
+    addEvent(btn, 'click', fn1);
+    // addEvent(document, 'click',fn2);
+
+    // var baidu = document.getElementById('baidu');
+    // addEvent(baidu, 'click', function(e){
+    //     e.preventDefault();
+    // });
+}
+
+function fn1(e){
+    e.stopPropagation();
+    alert('button');
+}
+
+
+function fn3(){
+    alert(3);
+}
+
+*/
+
+
+
+
+
+
+
+
+
 
