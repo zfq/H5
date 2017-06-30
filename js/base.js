@@ -32,24 +32,7 @@ function Base(args) {
                 this.find(selectors[k]);
             }
             
-        }
-        /*
-        switch (args.charAt(0)) {
-            case '#': {
-                this.getById(args.substring(1));
-            } break;
-            case '.': {
-                var eles = document.getElementsByClassName(args.substring(1));
-                for (var i = 0; i < eles.length; i++) {
-                    this.elements.push(eles[i]);
-                }
-                
-            } break;    
-            default: {
-                this.getByTagName(args);
-            } break;
-        }*/
-        
+        }        
     } else if (args != undefined) {
         this.elements[0] = args;
     }
